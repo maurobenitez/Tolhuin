@@ -1,5 +1,6 @@
 package tolhuin
-
+import groovy.json.* 
+import java.text.DecimalFormat
 class EmprendimientosController {
 
   def index() {
@@ -36,8 +37,36 @@ class EmprendimientosController {
   }
 
   def show(){
-    def emprendimiento=Emprendimiento.get(params.id)
-    [emprendimiento:emprendimiento]
+      def emprendimiento=Emprendimiento.get(params.id)
+      def x=emprendimiento.getLatitud()
+      def y=emprendimiento.getLongitud()
+      def coordenada=null    
+
+
+    //-67.20560073852539
+    //-54.49815951177054
+    if ((x!=null) && (y!=null)){
+      def coordenadaSinSerializar="""{
+            "type": "FeatureCollection",
+            "features": [
+                {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                    $x,
+                    $y
+                    ]
+                }
+                }
+            ]
+          }"""
+          coordenada=JsonOutput.toJson(coordenadaSinSerializar)
+    }
+    
+    
+    [emprendimiento:emprendimiento, coordenada:coordenada]
   }
 
   def edit(){
@@ -50,7 +79,7 @@ class EmprendimientosController {
     flash.errorEmprendimiento=true
     render view:"create", model:[emprendimiento:emprendimiento,rubros:Rubro.list(),ambitos:Ambito.list(),investigadores:Usuario.list()]
     }else{
-      emprendimiento.validado=false
+      emprendimiento.esValido=false
       emprendimiento.save()
       redirect (action:"show",id:emprendimiento.id)
     }
@@ -73,6 +102,10 @@ class EmprendimientosController {
   def borrar(){
     Emprendimiento.get(params.id).delete(flush:true)
     redirect view:"index", model:[emprendimientos: Emprendimiento.list()]
+  }
+  def imagen(Long id){
+    def emprendimiento=Emprendimiento.get(id)
+    render file: emprendimiento.foto, contentType: emprendimiento.featuredImageContentType
   }
     
 }

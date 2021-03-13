@@ -9,14 +9,14 @@
             <g:if test="${flash.errorEmprendimiento == true}">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Error de carga, intente nuevamente, error: ${mensajeError}
+                            Error de carga, intente nuevamente
                 </div>
             </g:if>
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">    
                     <h1>Añadir emprendimiento</h1>
-                    <g:form action="save">
+                    <g:form action="save" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
                             <g:textField name="nombre" class="form-control" id="nombre" placeholder="nombre" value="${emprendimiento.nombre}"/>
@@ -26,8 +26,17 @@
                             <g:textField name="direccion" class="form-control" id="direccion" placeholder="direccion" value="${emprendimiento.direccion}"/>
                         </div>
                         <div class="form-group">
+                            <label for="latitud">Latitud</label>
+                            <g:textField name="latitud" class="form-control" id="latitud" placeholder="latitud" value="${emprendimiento.latitud}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitud">Longitud</label>
+                            <g:textField name="longitud" class="form-control" id="longitud" placeholder="longitud" value="${emprendimiento.longitud}"/>
+                        </div>
+
+                        <div class="form-group">
                             <label for="foto">Imagen</label>
-                            <g:textField name="foto" class="form-control" id="foto" placeholder="foto" value="${emprendimiento.foto}"/>
+                            <input type="file" name="foto" id="foto" value="${emprendimiento.foto}"/>
                         </div>
                         <div class="form-group">
                             <label for="rubro">Rubro</label>

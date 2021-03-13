@@ -50,7 +50,7 @@
                 </g:if>
                 <g:if test="${session.tipo == 'investigador' || session.tipo == 'administrador'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/mapa/index">Mapas</a>
+                        <a class="nav-link" href="/capa/index">Capas</a>
                     </li>
                 </g:if>
             </ul>

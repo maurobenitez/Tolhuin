@@ -15,7 +15,7 @@ class BootStrap {
     }
 
     def cargar(){
-		File file = new File("/home/mauro/Documentos/Facultad/Laboratorio de software/Tolhuin/grails-app/assets/csv/BBDD_Tolhuin.csv")
+		File file = new File("grails-app/assets/csv/BBDD_Tolhuin.csv")
     	def rubros=[:]
 		def ambitos=[:]
 		def sectores=[:]

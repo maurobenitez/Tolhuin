@@ -1,4 +1,5 @@
 package tolhuin
+import groovy.json.* 
 
 class EmprendimientoController {
 
@@ -7,6 +8,7 @@ class EmprendimientoController {
   }
 
   def show(){
+        
     def usuario=Usuario.get(params.id)
     def emprendimiento=null
     if (usuario.enValidacion!=null){
@@ -14,23 +16,40 @@ class EmprendimientoController {
     }else{
       emprendimiento=usuario.validado
     }
-    [emprendimiento:emprendimiento]
+    def coordenada=null
+    if (emprendimiento!=null){
+      def x=emprendimiento.getLatitud()
+      def y=emprendimiento.getLongitud()
+          
+
+
+    //-67.20560073852539
+    //-54.49815951177054
+      if ((x!=null) && (y!=null)){
+        def coordenadaSinSerializar="""{
+              "type": "FeatureCollection",
+              "features": [
+                  {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                      $x,
+                      $y
+                      ]
+                  }
+                  }
+              ]
+            }"""
+            coordenada=JsonOutput.toJson(coordenadaSinSerializar)
+      }
+    }
+    [emprendimiento:emprendimiento, coordenada:coordenada]
   }
 
   def edit(){
-    def emp=Emprendimiento.get(params.id)
-    def usuario=Usuario.get(session.usuario)
-    def emprendimiento=new Emprendimiento()
-    if (emp.esValido){
-      emprendimiento.setProperties(emp)
-      emprendimiento.esValido=false
-      emprendimiento.enValidacion=usuario
-      usuario.enValidacion=emprendimiento
-      emprendimiento.save(flush:true)
-      usuario.save(flush:true)
-    }else{
-      emprendimiento=emp
-    }
+    def emprendimiento=Emprendimiento.get(params.id)
     [emprendimiento:emprendimiento,rubros:Rubro.list(),ambitos:Ambito.list(), investigadores:Usuario.list()]
   }
 
@@ -51,8 +70,11 @@ class EmprendimientoController {
 
   def update(Emprendimiento emprendimiento){
     if (emprendimiento.hasErrors()){
-    flash.errorEmprendimiento=true
-    render view:"edit", model:[emprendimiento:emprendimiento,rubros:Rubro.list(),ambitos:Ambito.list(), investigadores:Usuario.list()]
+      flash.errorEmprendimiento=true
+      println(emprendimiento.foto)
+      println(emprendimiento.getErrors())
+      
+      render view:"edit", model:[emprendimiento:emprendimiento,rubros:Rubro.list(),ambitos:Ambito.list(), investigadores:Usuario.list()]
     }else{
       emprendimiento.save(flush:true)
       redirect action:"show", id:session.usuario

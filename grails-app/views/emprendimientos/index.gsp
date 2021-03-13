@@ -7,6 +7,7 @@
     <body>
         <div class="table-responsive">
             <h1>emprendimientos</h1>
+            <g:link action="create" class="btn btn-primary">Añadir emprendimiento</g:link>
             <table class="table table-striped table-sm">
                 <tr>
                     <th>Emprendimiento</th>
@@ -29,7 +30,7 @@
                     </tr>
                 </g:each>
             </table>
-            <g:link action="create" class="btn btn-primary">Añadir emprendimiento</g:link>
+            
         </div>
     </body>
 </html>

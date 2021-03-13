@@ -16,7 +16,7 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <h1>Editar emprendimiento</h1>
-                <g:form name="cargarEmprendimiento" id="${emprendimiento.id}">
+                <g:form name="cargarEmprendimiento" id="${emprendimiento.id}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <g:textField name="nombre" value="${emprendimiento.nombre}" class="form-control" id="nombre" placeholder="nombre"/>
@@ -26,9 +26,17 @@
                         <g:textField name="direccion" value="${emprendimiento.direccion}" class="form-control" id="direccion" placeholder="direccion"/>
                     </div>
                     <div class="form-group">
-                        <label for="foto">Imagen</label>
-                        <g:textField name="foto" value="${emprendimiento.foto}" class="form-control" id="foto" placeholder="foto"/>
+                        <label for="latitud">Latitud</label>
+                        <g:textField name="latitud" class="form-control" id="latitud" placeholder="latitud" value="${emprendimiento.latitud}"/>
                     </div>
+                    <div class="form-group">
+                        <label for="longitud">Longitud</label>
+                        <g:textField name="longitud" class="form-control" id="longitud" placeholder="longitud" value="${emprendimiento.longitud}"/>
+                    </div>
+                    <div class="form-group">
+                            <label for="foto">Imagen</label>
+                            <input type="file" name="foto" id="foto" value="${emprendimiento.foto}"/>
+                        </div>
                     <div class="form-group">
                         <label for="rubro">Rubro</label>         
                         <g:select name="rubro" value="${emprendimiento.rubro.id}" from="${rubros}" optionKey="id" class="form-control custom-select" id="rubro" placeholder="rubro"/>

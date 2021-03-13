@@ -26,8 +26,16 @@
                             <g:textField name="direccion" class="form-control" id="direccion" placeholder="direccion" value="${emprendimiento.direccion}"/>
                         </div>
                         <div class="form-group">
+                            <label for="latitud">Latitud</label>
+                            <g:textField name="latitud" class="form-control" id="latitud" placeholder="latitud" value="${emprendimiento.latitud}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitud">Longitud</label>
+                            <g:textField name="longitud" class="form-control" id="longitud" placeholder="longitud" value="${emprendimiento.longitud}"/>
+                        </div>
+                        <div class="form-group">
                             <label for="foto">Imagen</label>
-                            <input type="file" name="foto" id="foto"/>
+                            <input type="file" name="foto" id="foto" value="${emprendimiento.foto}"/>
                         </div>
                         <div class="form-group">
                             <label for="rubro">Rubro</label>

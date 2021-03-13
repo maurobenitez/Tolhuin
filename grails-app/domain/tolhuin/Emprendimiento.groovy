@@ -2,8 +2,8 @@ package tolhuin
 
 class Emprendimiento {
     String nombre
-    Double latitud
-    Double longitud
+    String latitud
+    String longitud
     String direccion
     Boolean esValido
     Boolean habilitado
