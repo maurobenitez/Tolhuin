@@ -8,6 +8,7 @@ class LoginController {
 			session["logeado"]=true	
 			session["tipo"]=usr.tipo
 			session["usuario"]=usr.id
+			session["nombre"]=usr.nick
 			if (usr.tipo=="emprendedor"){
 				redirect(action:"show", controller: "emprendedor", id:usr.id)
 			}

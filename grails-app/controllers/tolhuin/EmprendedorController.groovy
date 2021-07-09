@@ -57,6 +57,7 @@ class EmprendedorController {
       session["logeado"]=true
       session["usuario"]=usuario.id
 			session["tipo"]="emprendedor"
+      session["nombre"]=usuario.nick
       redirect action:"show", id: usuario.id
     }
   }

@@ -20,28 +20,32 @@
                 <g:form action="saveRegister">
                     <div class="form-group">
                         <label for="nick">Usuario</label>
-                        <g:textField name="nick" class="form-control" id="nick" placeholder="nick" value="${usuario.nick}"/>
+                        <g:textField name="nick" class="form-control" id="nick" placeholder="Nick" value="${usuario.nick}"/>
                     </div>
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <g:textField name="nombre" class="form-control" id="nombre" placeholder="nombre"value="${usuario.nombre}"/>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="nombre">Nombre</label>
+                            <g:textField name="nombre-usuario" class="form-control" id="nombre" placeholder="Nombre"value="${usuario.nombre}"/>
+                        </div>
+                        <div class="col">
+                            <label for="apellido">Apellido</label>
+                            <g:textField name="apellido-usuario" class="form-control" id="apellido" placeholder="apellido" value="${usuario.apellido}"/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="apellido">Apellido</label>
-                        <g:textField name="apellido" class="form-control" id="apellido" placeholder="apellido" value="${usuario.apellido}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="contrasena">Contraseña</label>
-                        <g:passwordField name="contrasena" class="form-control" id="contrasena" placeholder="contrasena" value="${usuario.contrasena}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="contrasena2">Repita contraseña</label>
-                        <g:passwordField name="contrasena2" class="form-control" id="contrasena2" placeholder="contrasena"/>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="contrasena">Contraseña</label>
+                            <g:passwordField name="contrasena-usuario" class="form-control" id="contrasena" placeholder="Contraseña" value="${usuario.contrasena}"/>
+                        </div>
+                        <div class="col">
+                            <label for="contrasena2">Repita contraseña</label>
+                            <g:passwordField name="contrasena2" class="form-control" id="contrasena2" placeholder="Repita contraseña"/>
+                        </div>
                     </div>
                    
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <g:textField name="email" class="form-control" id="email" placeholder="email" value="${usuario.email}"/>
+                        <g:textField name="email" class="form-control" id="email" placeholder="Email" value="${usuario.email}"/>
                     </div>
 
                     <g:hiddenField name="tipo" id="tipo" placeholder="tipo" value="${usuario.tipo}"/>

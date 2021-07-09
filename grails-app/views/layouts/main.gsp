@@ -16,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <asset:image src="845.png" width="30" height="30" class="d-inline-block align-top" loading="lazy"/>
             Tolhuin
         </a>
@@ -51,9 +51,20 @@
                         </li>
                     </g:if>
                     <g:else>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login/logout">Salir</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ${session.nombre}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <g:if test="${session.tipo != 'emprendedor'}">
+                                <a class="dropdown-item" href="/emprendimientos/index">Backoffice</a>
+                            </g:if>
+                            <a class="dropdown-item" href="/login/logout">Salir</a>
+                            
+                            
+                        </div>
+
+                    </li>    
                     </g:else>
                 </ul>
             </span>
